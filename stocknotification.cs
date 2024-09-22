@@ -2,7 +2,7 @@
 
 // This is a class that holds attributes of the stock that passed a threshold to be notified
 
-namespace StockTracker
+namespace Stock_Tracker
 {
     public class StockNotification : EventArgs
     {

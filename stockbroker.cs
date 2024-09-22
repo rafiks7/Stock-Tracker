@@ -7,7 +7,7 @@ using System.Threading;
 using System.Collections;
 using System.Reflection;
 
-namespace StockTracker
+namespace Stock_Tracker
 { 
     //!NOTE!: Class StockBroker has fields broker name and a list of Stock named stocks.
     // addStock method registers the Notify listener with the stock(in addition to adding it to the lsit of stocks held by the broker).

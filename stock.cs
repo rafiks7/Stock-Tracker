@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
 using System.Threading;
-namespace StockTracker
+namespace Stock_Tracker
 {
     public class Stock
     {
@@ -28,11 +28,11 @@ namespace StockTracker
 
         //PUBLIC FIELDS
         public string StockName { get => _name; set => _name = value; }
-        public int InitialValue;
-        public int CurrentValue;
-        public int MaxChange;
-        public int Threshold;
-        public int NumChanges;
+        public int InitialValue { get => _initialValue; }
+        public int CurrentValue { get => _currentValue; set => _currentValue = value; }
+        public int MaxChange { get => _maxChange; }
+        public int Threshold { get => _threshold; }
+        public int NumChanges { get => _numChanges; set => _numChanges = value; }
 
         /// <summary>
         /// Stock class that contains all the information and changes of the stock
@@ -48,12 +48,13 @@ namespace StockTracker
             _currentValue = InitialValue;
             _maxChange = maxChange;
             _threshold = threshold;
+            _numChanges = 0;
             /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!TODO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
             // Create a new thread for the stock when the constructor is called
-            /*
-            this._thread = new Thread(new ThreadStart(______________________));
-            _thread.________________;
-            */
+            
+            this._thread = new Thread(new ThreadStart(Activate));
+            _thread.Start();
+            
         }
 
         /// <summary>
@@ -70,9 +71,11 @@ namespace StockTracker
         }
 
         // delegate function for the stockNotification event
+        // unnecessary
         //public delegate void StockNotification(String stockName, int currentValue, int numberChanges);
 
         // Event that is raised when a stock value passes the threshold
+        // unnecessary
         //public event StockNotification ProcessComplete;
 
 
@@ -82,16 +85,21 @@ namespace StockTracker
         public void ChangeStockValue()
         {
             var rand = new Random();
-            CurrentValue += rand.Next(1, MaxChange);
+            int sign = rand.Next(0, 2) == 0 ? 1 : -1;
+            int change = rand.Next(1, MaxChange + 1);
+            CurrentValue += sign * change;
             NumChanges++;
             /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!TODO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
             // Raise an event if the stock passes threshold
-            /*
-            if ((CurrentValue - InitialValue) > Threshold)
-            { //RAISE THE EVENT
-                _____ Invoke _____________________________________________________
+
+            if ((CurrentValue - InitialValue) >= Threshold)
+            {
+                // Testing the event
+                //Console.WriteLine($"RAISING Name: {StockName}  Current: {CurrentValue} Initial: {InitialValue}.");
+                StockEvent?.Invoke(this, new StockNotification(StockName, CurrentValue, NumChanges));
+
             }
-            */
+            
         }
 
 
