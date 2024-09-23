@@ -49,9 +49,7 @@ namespace Stock_Tracker
             _maxChange = maxChange;
             _threshold = threshold;
             _numChanges = 0;
-            /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!TODO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
-            // Create a new thread for the stock when the constructor is called
-            
+            // Create a new thread for the stock when the constructor is called            
             this._thread = new Thread(new ThreadStart(Activate));
             _thread.Start();
             
@@ -70,15 +68,6 @@ namespace Stock_Tracker
             }
         }
 
-        // delegate function for the stockNotification event
-        // unnecessary
-        //public delegate void StockNotification(String stockName, int currentValue, int numberChanges);
-
-        // Event that is raised when a stock value passes the threshold
-        // unnecessary
-        //public event StockNotification ProcessComplete;
-
-
         /// <summary>
         /// Changes the stock value and also raising the event of stock value changes
         /// </summary>
@@ -89,19 +78,12 @@ namespace Stock_Tracker
             int change = rand.Next(1, MaxChange + 1);
             CurrentValue += sign * change;
             NumChanges++;
-            /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!TODO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
             // Raise an event if the stock passes threshold
-
             if ((CurrentValue - InitialValue) >= Threshold)
             {
-                // Testing the event
-                //Console.WriteLine($"RAISING Name: {StockName}  Current: {CurrentValue} Initial: {InitialValue}.");
                 StockEvent?.Invoke(this, new StockNotification(StockName, CurrentValue, NumChanges));
-
-            }
-            
+            }            
         }
-
 
     }
 }

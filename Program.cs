@@ -13,14 +13,13 @@ namespace Stock_Tracker
 
         static void Main(string[] args)
         {
+            // Creating stock objects
             Stock stock1 = new Stock("Technology", 160, 5, 15);
             Stock stock2 = new Stock("Retail", 30, 2, 6);
             Stock stock3 = new Stock("Banking", 90, 4, 10);
             Stock stock4 = new Stock("Commodity", 500, 20, 50);
 
-
-
-            /*
+            // Creating stockbroker objects and adding stocks to them
             StockBroker b1 = new StockBroker("Broker 1");
             b1.AddStock(stock1);
             b1.AddStock(stock2);
@@ -39,28 +38,7 @@ namespace Stock_Tracker
             b4.AddStock(stock2);
             b4.AddStock(stock3);
             b4.AddStock(stock4);
-            */
-
-            /*
-             
-            The output sample (All the column must be left alignment):
-
-            Broker Stock Value Changes Date and Time
-            Broker 2 Banking 102 5 2/2/2022 1:23:25 PM
-            Broker 3 Banking 102 5 2/2/2022 1:23:25 PM
-            Broker 4 Banking 102 5 2/2/2022 1:23:25 PM
-            Broker 2 Commodity 559 5 2/2/2022 1:23:25 PM
-            Broker 4 Commodity 559 5 2/2/2022 1:23:25 PM
-            Broker 1 Technology 176 6 2/2/2022 1:23:25 PM
-            Broker 2 Technology 176 6 2/2/2022 1:23:25 PM
-            Broker 3 Technology 176 6 2/2/2022 1:23:25 PM
-            Broker 4 Technology 176 6 2/2/2022 1:23:25 PM
-            Broker 2 Commodity 562 6 2/2/2022 1:23:25 PM
-            Broker 4 Commodity 562 6 2/2/2022 1:23:25 PM
-            Broker 2 Banking 104 6 2/2/2022 1:23:25 PM
-            Broker 3 Banking 104 6 2/2/2022 1:23:25 PM
-
-            */
+            
         }
 
 
